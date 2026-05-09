@@ -35,7 +35,7 @@ function fetchStatementByLabel() {
 
       // 1. 楽天キャッシュ
       if (subject.includes("【楽天キャッシュ】チャージ完了のお知らせ")) {
-        const dateMatch = body.match(/ご利用日時\s*([\d\/\(\)\s\u3000-\u30ff\u4e00-\u9faf\:]+?\d{1,2}:\d{2})/);
+        const dateMatch = body.match(/\[取引日時\]\s*([\d\/\(\)\s\u3000-\u30ff\u4e00-\u9faf\:]+?\d{1,2}:\d{2})/);
         const amountMatch = body.match(/\[金額\]\s*([\d,]+)\s*円/);
         if (dateMatch && amountMatch) {
           sheets.rakutenCash.appendRow([dateMatch[1].trim(), amountMatch[1].replace(/,/g, "").trim()]);
